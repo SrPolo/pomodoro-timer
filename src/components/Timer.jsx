@@ -1,37 +1,8 @@
-import { useRef, useState } from 'react'
+import { useTimer } from '../hooks/useTimer'
 import { getFormatedTime } from '../utils/general'
 
 const Timer = () => {
-  const [seconds, setSeconds] = useState(10)
-  const [isRunning, setIsRunning] = useState(false)
-  const interval = useRef(null)
-
-  const toggleTimer = () => {
-    if (!interval.current) {
-      startInterval()
-      return
-    }
-    stopInterval()
-  }
-
-  const startInterval = () => {
-    interval.current = setInterval(() => {
-      setSeconds((timeSeconds) => {
-        if (timeSeconds === 0) {
-          stopInterval()
-          return 0
-        }
-        return timeSeconds - 1
-      })
-    }, 1000)
-    setIsRunning(true)
-  }
-
-  const stopInterval = () => {
-    clearInterval(interval.current)
-    interval.current = null
-    setIsRunning(false)
-  }
+  const { isRunning, seconds, toggleTimer } = useTimer(10)
 
   return (
     <div className="flex flex-col items-center gap-5 p-12">
