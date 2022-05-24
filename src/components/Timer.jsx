@@ -1,5 +1,5 @@
-import { useTimer } from '../hooks/useTimer'
-import { getFormatedTime } from '../utils/general'
+import { useTimer } from '@/hooks/useTimer'
+import { getFormatedTime } from '@/utils/general'
 
 const Timer = () => {
   const { isRunning, seconds, toggleTimer } = useTimer(10)
