@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
+import RangeInput from './RangeInput'
 
 const initialValues = {
   focusTime: 25,
@@ -18,7 +19,7 @@ const SettingsForm = (props) => {
 
     setSettings({
       ...settings,
-      [name]: value,
+      [name]: Number(value),
     })
   }
 
@@ -28,51 +29,39 @@ const SettingsForm = (props) => {
   }
 
   return (
-    <form onSubmit={saveSettings}>
-      <label htmlFor="focus-time">Focus</label>
-      <input
-        id="focus-time"
-        name="focusTime"
-        type="range"
+    <form onSubmit={saveSettings} className="grid gap-4">
+      <RangeInput
+        label="Focus"
+        name={'focusTime'}
         max={90}
         min={1}
+        onChange={handleChange}
         value={settings.focusTime}
-        onChange={handleChange}
       />
-
-      <label htmlFor="short-break-time">Short break</label>
-      <input
-        id="short-break-time"
-        name="shortBreakTime"
-        type="range"
+      <RangeInput
+        label="Short Break"
+        name={'shortBreakTime'}
         max={90}
         min={1}
+        onChange={handleChange}
         value={settings.shortBreakTime}
-        onChange={handleChange}
       />
-
-      <label htmlFor="long-break-time">Long break</label>
-      <input
-        id="long-break-time"
-        name="longBreakTime"
-        type="range"
+      <RangeInput
+        label="Long Break"
+        name={'longBreakTime'}
         max={90}
         min={1}
-        value={settings.longBreakTime}
         onChange={handleChange}
+        value={settings.longBreakTime}
       />
-
-      <label htmlFor="long-break-time">Rounds</label>
-      <input
-        id="long-break-time"
-        name="rounds"
-        type="range"
+      <RangeInput
+        label="Rounds"
+        name={'rounds'}
         max={12}
         min={1}
-        value={settings.rounds}
         onChange={handleChange}
+        value={settings.rounds}
       />
-
       <button type="submit">Save</button>
     </form>
   )
