@@ -1,7 +1,7 @@
 import Header from '@/components/Header'
 import ModalDialog from '@/components/ModalDialog'
+import Settings from '@/components/SettingsForm'
 import { useState } from 'react'
-import Settings from './Settings'
 import StatusPanel from './StatusPanel'
 
 const Main = () => {
@@ -15,7 +15,10 @@ const Main = () => {
         <Header openSettingModal={openSettingModal} />
         <StatusPanel />
       </div>
-      <ModalDialog isOpen={settingIsOpen} onClose={closeSettingModal}>
+      <ModalDialog
+        isOpen={settingIsOpen}
+        onClose={closeSettingModal}
+        className="grid gap-4 text-slate-700 font-semibold">
         <Settings />
       </ModalDialog>
     </main>

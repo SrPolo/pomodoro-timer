@@ -1,35 +1,17 @@
-import PropTypes from 'prop-types'
-import { useState } from 'react'
+import SettingsContext from '@/contexts/SettingsProvider'
+import { useContext } from 'react'
 import RangeInput from './RangeInput'
 
-const initialValues = {
-  focusTime: 25,
-  shortBreakTime: 5,
-  longBreakTime: 15,
-  rounds: 4,
-}
-
-const SettingsForm = (props) => {
-  const { onSubmit } = props
-
-  const [settings, setSettings] = useState(initialValues)
+const Settings = () => {
+  const { settings, changeSettings } = useContext(SettingsContext)
 
   const handleChange = (e) => {
     const { value, name } = e.target
-
-    setSettings({
-      ...settings,
-      [name]: Number(value),
-    })
-  }
-
-  const saveSettings = (e) => {
-    e.preventDefault()
-    onSubmit(settings)
+    changeSettings(name, Number(value))
   }
 
   return (
-    <form onSubmit={saveSettings} className="grid gap-4">
+    <form>
       <RangeInput
         label="Focus"
         name={'focusTime'}
@@ -62,13 +44,8 @@ const SettingsForm = (props) => {
         onChange={handleChange}
         value={settings.rounds}
       />
-      <button type="submit">Save</button>
     </form>
   )
 }
 
-export default SettingsForm
-
-SettingsForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-}
+export default Settings
