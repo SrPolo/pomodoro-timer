@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 
-export const useTimer = (initialValue) => {
-  const [seconds, setSeconds] = useState(initialValue)
+export const useTimer = (initialValue = 0) => {
+  const [seconds, setSeconds] = useState(initialValue * 60)
   const [isRunning, setIsRunning] = useState(false)
   const interval = useRef(null)
 
