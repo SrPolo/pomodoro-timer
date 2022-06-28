@@ -1,7 +1,12 @@
 import Main from '@/layouts/Main'
+import { SettingsProvider } from '@/contexts/SettingsProvider'
 
 function App() {
-  return <Main />
+  return (
+    <SettingsProvider>
+      <Main />
+    </SettingsProvider>
+  )
 }
 
 export default App
