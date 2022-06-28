@@ -1,8 +1,11 @@
+import SettingsContext from '@/contexts/SettingsProvider'
 import { useTimer } from '@/hooks/useTimer'
 import { getFormatedTime } from '@/utils/general'
+import { useContext } from 'react'
 
 const Timer = () => {
-  const { isRunning, seconds, toggleTimer } = useTimer(10)
+  const { settings } = useContext(SettingsContext)
+  const { isRunning, seconds, toggleTimer } = useTimer(settings.focusTime)
 
   return (
     <div className="flex flex-col items-center gap-5 p-12">
