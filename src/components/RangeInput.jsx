@@ -4,7 +4,9 @@ const RangeInput = (props) => {
   const { value, onChange, name, max, min, label } = props
   return (
     <div className="w-full grid justify-items-center">
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name} className="text-base">
+        {label}
+      </label>
       <span>{`${value} : 00`}</span>
       <input
         id={name}

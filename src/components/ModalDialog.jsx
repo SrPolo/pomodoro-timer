@@ -9,7 +9,7 @@ const ModalDialog = (props) => {
           py-12 w-full h-full flex justify-center items-center"
         onClick={onClose}>
         <div
-          className="relative m-auto p-5 border w-96 shadow-lg rounded-md bg-white"
+          className="relative m-auto p-5 border border-slate-300 w-96 shadow-lg rounded-xl bg-slate-300"
           onClick={(e) => e.stopPropagation()}>
           {children}
         </div>
