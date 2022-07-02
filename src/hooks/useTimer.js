@@ -1,9 +1,14 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export const useTimer = (initialValue = 0) => {
-  const [seconds, setSeconds] = useState(initialValue * 60)
+  const [seconds, setSeconds] = useState(initialValue)
   const [isRunning, setIsRunning] = useState(false)
   const interval = useRef(null)
+
+  useEffect(() => {
+    stopInterval()
+    setSeconds(initialValue)
+  }, [initialValue])
 
   const toggleTimer = () => {
     if (!interval.current) {

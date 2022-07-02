@@ -5,7 +5,7 @@ import { useContext } from 'react'
 
 const Timer = () => {
   const { settings } = useContext(SettingsContext)
-  const { isRunning, seconds, toggleTimer } = useTimer(settings.focusTime)
+  const { isRunning, seconds, toggleTimer } = useTimer(settings.focusTime * 60)
 
   return (
     <div className="flex flex-col items-center gap-5 p-12">
