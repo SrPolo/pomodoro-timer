@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 const SettingsContext = createContext()
 
 const initialValues = {
-  focusTime: 25,
-  shortBreakTime: 5,
-  longBreakTime: 15,
+  focusTime: 1500,
+  shortBreakTime: 300,
+  longBreakTime: 75,
   rounds: 4,
 }
 

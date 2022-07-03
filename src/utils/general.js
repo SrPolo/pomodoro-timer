@@ -25,7 +25,19 @@ export function toTwoDigits(number) {
  * minutes and SS is the number of seconds.
  * @param timeSeconds - The time in seconds that you want to format.
  */
-export const getFormatedTime = (timeSeconds) => {
+export const getFormattedTime = (timeSeconds) => {
   const [minutes, seconds] = getMinutesAndSeconds(timeSeconds)
   return `${toTwoDigits(minutes)} : ${toTwoDigits(seconds)}`
 }
+
+/**
+ * Convert minutes to seconds.
+ * @param minutes - The number of minutes to convert to seconds.
+ */
+export const minutesToSeconds = (minutes) => minutes * 60
+
+/**
+ * Convert seconds to minutes by rounding the result of dividing seconds by 60.
+ * @param seconds - The number of seconds to convert to minutes.
+ */
+export const secondsToMinutes = (seconds) => Math.round(seconds / 60)
