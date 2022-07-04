@@ -6,7 +6,8 @@ import RangeInput from './RangeInput'
 const timeSettings = ['focusTime', 'shortBreakTime', 'longBreakTime']
 
 const Settings = () => {
-  const { settings, changeSettings } = useContext(SettingsContext)
+  const { settings, changeSettings, resetDefaults } =
+    useContext(SettingsContext)
 
   const handleChange = (e) => {
     const { value, name } = e.target
@@ -16,8 +17,13 @@ const Settings = () => {
     changeSettings(name, convertedValue)
   }
 
+  const handleReset = (e) => {
+    e.preventDefault()
+    resetDefaults()
+  }
+
   return (
-    <form>
+    <form className="flex flex-col gap-2">
       <RangeInput
         label="Focus"
         name={'focusTime'}
@@ -50,6 +56,12 @@ const Settings = () => {
         onChange={handleChange}
         value={settings.rounds}
       />
+
+      <div>
+        <button onClick={handleReset} className="block m-auto">
+          Reset Defaults
+        </button>
+      </div>
     </form>
   )
 }

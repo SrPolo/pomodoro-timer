@@ -6,7 +6,7 @@ const SettingsContext = createContext()
 const initialValues = {
   focusTime: 1500,
   shortBreakTime: 300,
-  longBreakTime: 75,
+  longBreakTime: 900,
   rounds: 4,
 }
 
@@ -20,8 +20,18 @@ const SettingsProvider = ({ children }) => {
     })
   }
 
+  const resetDefaults = () => {
+    setSettings(initialValues)
+  }
+
+  const exportedValues = {
+    settings,
+    changeSettings,
+    resetDefaults,
+  }
+
   return (
-    <SettingsContext.Provider value={{ settings, changeSettings }}>
+    <SettingsContext.Provider value={exportedValues}>
       {children}
     </SettingsContext.Provider>
   )
