@@ -1,21 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 export const useTimer = (initialValue = 0) => {
   const [seconds, setSeconds] = useState(initialValue)
   const [isRunning, setIsRunning] = useState(false)
   const interval = useRef(null)
 
-  useEffect(() => {
-    stopInterval()
-    setSeconds(initialValue)
-  }, [initialValue])
+  const setTimer = (value) => setSeconds(value)
 
-  const toggleTimer = () => {
-    if (!interval.current) {
-      startInterval()
-      return
-    }
-    stopInterval()
+  const stopInterval = () => {
+    setIsRunning(false)
+    clearInterval(interval.current)
   }
 
   const startInterval = () => {
@@ -31,11 +25,5 @@ export const useTimer = (initialValue = 0) => {
     setIsRunning(true)
   }
 
-  const stopInterval = () => {
-    clearInterval(interval.current)
-    interval.current = null
-    setIsRunning(false)
-  }
-
-  return { seconds, isRunning, toggleTimer }
+  return { seconds, isRunning, startInterval, stopInterval, setTimer }
 }
