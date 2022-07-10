@@ -1,3 +1,5 @@
+import { PERIODS } from '@/config/variables'
+
 /**
  * It takes a number of seconds and returns an array of two numbers, the first being the number of
  * minutes and the second being the number of seconds
@@ -41,3 +43,19 @@ export const minutesToSeconds = (minutes) => minutes * 60
  * @param seconds - The number of seconds to convert to minutes.
  */
 export const secondsToMinutes = (seconds) => Math.round(seconds / 60)
+
+const isEven = (number) => number % 2 === 0
+
+export const getPeriodsList = (rounds = 4) => {
+  const listLength = rounds * 2
+  const periodsList = []
+  for (let i = 0; i < listLength; i++) {
+    if (i === listLength - 1) {
+      periodsList.push(PERIODS.LONG_BREAK_TIME)
+      break
+    }
+    const value = isEven(i) ? PERIODS.FOCUS_TIME : PERIODS.SHORT_BREAK_TIME
+    periodsList.push(value)
+  }
+  return periodsList
+}
