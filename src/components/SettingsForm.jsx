@@ -1,9 +1,8 @@
+import { PERIODS } from '@/config/variables'
 import SettingsContext from '@/contexts/SettingsProvider'
 import { minutesToSeconds, secondsToMinutes } from '@/utils/general'
 import { useContext } from 'react'
 import RangeInput from './RangeInput'
-
-const timeSettings = ['focusTime', 'shortBreakTime', 'longBreakTime']
 
 const Settings = () => {
   const { settings, changeSettings, resetDefaults } =
@@ -11,7 +10,7 @@ const Settings = () => {
 
   const handleChange = (e) => {
     const { value, name } = e.target
-    const convertedValue = timeSettings.includes(name)
+    const convertedValue = Object.values(PERIODS).includes(name)
       ? minutesToSeconds(Number(value))
       : Number(value)
     changeSettings(name, convertedValue)
