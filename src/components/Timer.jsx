@@ -1,11 +1,10 @@
-import SettingsContext from '@/contexts/SettingsProvider'
+import PropTypes from 'prop-types'
 import { useTimer } from '@/hooks/useTimer'
 import { getFormattedTime } from '@/utils/general'
-import { useContext } from 'react'
 
-const Timer = () => {
-  const { settings } = useContext(SettingsContext)
-  const { isRunning, seconds, toggleTimer } = useTimer(settings.focusTime)
+const Timer = (props) => {
+  const { initialTime } = props
+  const { isRunning, seconds, toggleTimer } = useTimer(initialTime)
 
   return (
     <div className="flex flex-col items-center gap-5 p-12">
@@ -19,6 +18,10 @@ const Timer = () => {
       </button>
     </div>
   )
+}
+
+Timer.propTypes = {
+  initialTime: PropTypes.number.isRequired,
 }
 
 export default Timer
